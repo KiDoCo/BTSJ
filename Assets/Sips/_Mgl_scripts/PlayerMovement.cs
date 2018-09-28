@@ -32,6 +32,11 @@ public class PlayerMovement : MonoBehaviour
         float hor = Input.GetAxis("Horizontal");
         transform.position += Vector3.right * hor * movementSpeed * Time.deltaTime;
 
+        if (hor < 0)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        else if (hor > 0)
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
             Jump();
     }

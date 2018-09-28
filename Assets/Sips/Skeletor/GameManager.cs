@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public PlayerMovement Player;
     public BoxCollider2D SteveCollider;
 
+    [SerializeField] float timer = 300f;
 
     private void Awake()
     {
@@ -25,5 +26,13 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
+        if(timer >= 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("Steve saved");
+        }
     }
 }
