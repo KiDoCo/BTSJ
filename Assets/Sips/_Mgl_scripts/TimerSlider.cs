@@ -29,6 +29,11 @@ public class TimerSlider : MonoBehaviour
         {
             LoseTime(.2f);
         }
+
+        if(timer.value <= 0f)
+        {
+            Debug.Log("Time ended");
+        }
     }
 
     public void AddTime(float amount)
