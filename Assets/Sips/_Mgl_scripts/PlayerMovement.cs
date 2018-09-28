@@ -7,16 +7,28 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float movementSpeed = 5f, distance = 0.75f, jumpForce = 5f;
     [SerializeField] LayerMask ground;
+    public Bounds PLcollider;
+    public bool stunned;
 
     Rigidbody2D rb;
 
+    private void Awake()
+    {
+
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
     }
 
     void FixedUpdate()
     {
+        PLcollider.center = transform.position;
+        if (stunned)
+        {
+            return;
+        }
         float hor = Input.GetAxis("Horizontal");
         transform.position += Vector3.right * hor * movementSpeed * Time.deltaTime;
 
@@ -35,5 +47,17 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             Debug.Log("not grounded");
+    }
+
+    public IEnumerator StunRecover(float duration)
+    {
+
+        while(duration > 0)
+        {
+            duration -= Time.deltaTime;
+            yield return null;
+        }
+
+        yield return stunned = false;
     }
 }

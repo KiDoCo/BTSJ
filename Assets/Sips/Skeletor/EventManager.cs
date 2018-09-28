@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //List of events
-public enum EVENT { PlaySFX, PlayMusic, StopSound, AINodeSpawn, Increase, RoundBegin, RoundEnd, FoodSpawn };
+public enum EVENT { PlaySFX, PlayMusic};
 
 //list of sounds
-public enum SFXEvent { Eat, Hurt, Lose, RoundEnd, RoundBegin, Victory }; // ADD death when clip available
+public enum SFXEvent { PowerUp, BurnOut,EnemyDeath, Goal,PlayerHit,SteveHit}; 
 
-public enum MusicEvent { Ambient, Hunting, MainMenu };
+public enum MusicEvent { Ambient };
 
 public static class EventManager
 {
