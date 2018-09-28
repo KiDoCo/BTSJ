@@ -32,7 +32,7 @@ public class TimerSlider : MonoBehaviour
 
         if(timer.value <= 0f)
         {
-            Debug.Log("Time ended");
+            // steve burns alive :)
         }
     }
 
