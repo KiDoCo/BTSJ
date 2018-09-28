@@ -29,6 +29,11 @@ public class TimerSlider : MonoBehaviour
         {
             LoseTime(.2f);
         }
+
+        if(timer.value <= 0f)
+        {
+            // steve burns alive :)
+        }
     }
 
     public void AddTime(float amount)
