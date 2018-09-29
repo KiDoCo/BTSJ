@@ -654,7 +654,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1327526363652506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.13, y: -2.18, z: 0}
+  m_LocalPosition: {x: -6.13, y: 0, z: 0}
   m_LocalScale: {x: -1, y: 0.6614183, z: 0.6614183}
   m_Children:
   - {fileID: 4607290404818316}
@@ -1273,7 +1273,7 @@ MonoBehaviour:
       defaultLocalRotation: {x: 0, y: 0, z: -0.04321783, w: 0.9990657}
     m_Weight: 1
     m_RestoreDefaultPose: 1
-    targetPosition: {x: -6.208, y: -1.6237783, z: 0}
+    targetPosition: {x: -7.308, y: -1.7996846, z: 0}
     flip: 0
 --- !u!114 &114076113848977602
 MonoBehaviour:
@@ -1528,16 +1528,16 @@ MonoBehaviour:
     - m_Bone: {fileID: 0}
       m_BoneTransform: {fileID: 4676979720707486}
       solverPosition: {x: 0, y: 0, z: 0}
-      solverRotation: {x: 0, y: 0, z: 0.31744304, w: 0.94827735}
+      solverRotation: {x: 0, y: 0, z: 0.3174432, w: 0.9482773}
       defaultLocalRotation: {x: 0, y: 0, z: -0.99983305, w: 0.018275267}
     - m_Bone: {fileID: 0}
       m_BoneTransform: {fileID: 4744780041909360}
       solverPosition: {x: 0, y: 0, z: 0}
-      solverRotation: {x: 0, y: 0, z: 0.8291572, w: 0.5590156}
+      solverRotation: {x: 0, y: 0, z: 0.82915705, w: 0.55901575}
       defaultLocalRotation: {x: 0, y: 0, z: 0.3597716, w: 0.93304044}
     m_Weight: 1
     m_RestoreDefaultPose: 1
-    targetPosition: {x: -4.313, y: -1.5543292, z: 0}
+    targetPosition: {x: -5.413, y: -1.7302356, z: 0}
     flip: 0
 --- !u!114 &114477377622051406
 MonoBehaviour:
@@ -1571,7 +1571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.6245717
+  m_Length: 0.62457156
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4188594093403120}
   m_AttachedIK: {fileID: 114052954826374896}
@@ -1737,8 +1737,8 @@ MonoBehaviour:
   state: 0
   distance_debug: 0
   Stevebounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 1, y: 1, z: 1}
+    m_Center: {x: 0, y: 2.5, z: 0}
+    m_Extent: {x: 1.5, y: 3, z: 1}
   speed: 10
   goal: {fileID: 0}
   steveAlive: 0
