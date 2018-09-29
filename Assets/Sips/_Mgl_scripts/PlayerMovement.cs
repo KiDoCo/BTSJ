@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Recover()
     {
-		StartCoroutine(StunRecover(1.0f);
+		StartCoroutine(StunRecover(1.0f));
     }
 
 }

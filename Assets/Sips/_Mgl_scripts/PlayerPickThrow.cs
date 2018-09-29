@@ -47,14 +47,20 @@ public class PlayerPickThrow : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Pickup")
+        if(other.GetComponent<Throwable>() != null)
+        {
             nearObjects.Add(other.gameObject);
+            Debug.Log("Getting pickup");
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Pickup")
+        if (other.GetComponent<Throwable>() != null)
+        {
             nearObjects.Remove(other.gameObject);
+            Debug.Log("No pick up");
+        }
     }
 
     void PickUp(GameObject pickup)

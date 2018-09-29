@@ -11,6 +11,14 @@ public class SideEnemy : MonoBehaviour, IEnemy
     private float stunTimer;
     private float moveValue = 5.0f;
 
+    public string id
+    {
+        get
+        {
+            return "GroundE";
+        }
+    }
+
     private void Awake()
     {
         boxCollider = GetComponent<Collider2D>();
@@ -68,6 +76,10 @@ public class SideEnemy : MonoBehaviour, IEnemy
             canStun = false;
         }
 
+        if ((GameManager.Instance.Player.transform.position - gameObject.transform.position).magnitude >= 150.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void TakeDamage()
