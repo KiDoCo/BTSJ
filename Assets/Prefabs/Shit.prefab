@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50496700965582056}
   m_Layer: 0
   m_Name: Shit
-  m_TagString: Enemy
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &58643244385267510
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -74,9 +74,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1}
   serializedVersion: 2
-  m_Radius: 3.0949998
+  m_Radius: 2
 --- !u!212 &212608533069049648
 SpriteRenderer:
   m_ObjectHideFlags: 1

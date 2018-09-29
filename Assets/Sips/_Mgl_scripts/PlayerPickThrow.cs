@@ -32,10 +32,12 @@ public class PlayerPickThrow : MonoBehaviour
 
         if(Input.GetKeyDown(action) && nearObjects.Count != 0 && !holding)
         {
+            nearObjects[0].GetComponent<Throwable>().held = true;
             PickUp(nearObjects[0]);
+
         }
 
-        if(holding)
+        if (holding)
         {
             timer -= Time.deltaTime;
             DrawRay();
@@ -49,7 +51,7 @@ public class PlayerPickThrow : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.GetComponent<Throwable>() != null)
+        if(other.GetComponent<Throwable>() != null && other.tag != "Crap")
         {
             nearObjects.Add(other.gameObject);
             Debug.Log("Getting pickup");
@@ -58,7 +60,7 @@ public class PlayerPickThrow : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<Throwable>() != null)
+        if (other.GetComponent<Throwable>() != null && other.tag != "Crap")
         {
             nearObjects.Remove(other.gameObject);
             Debug.Log("No pick up");
@@ -79,6 +81,7 @@ public class PlayerPickThrow : MonoBehaviour
         pickup.transform.position = itemPos.position;
         pickup.GetComponent<Rigidbody2D>().isKinematic = true;
         pickup.GetComponent<Rigidbody2D>().gravityScale = 0;
+        pickup.GetComponent<Collider2D>().enabled = false;
         holdObject.transform.parent = transform;
     }
 
@@ -123,7 +126,8 @@ public class PlayerPickThrow : MonoBehaviour
         holdObject.transform.parent = null;
         holdObject.GetComponent<Rigidbody2D>().isKinematic = false;
         holdObject.GetComponent<Rigidbody2D>().velocity = CalculateThrowData().initialVelocity;
-
+        holdObject.GetComponent<Collider2D>().enabled = true;
+        holdObject.GetComponent<Throwable>().held = false;
         holdObject = null;
 
         anim.SetTrigger("Throw");

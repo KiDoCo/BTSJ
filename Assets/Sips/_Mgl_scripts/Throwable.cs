@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Throwable : MonoBehaviour
 {
+
+    [HideInInspector] public bool held;
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (held) return;
         if(other.gameObject.tag == "Enemy")
         {
             if(gameObject.tag == "GasCan")

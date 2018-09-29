@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour
 
         for (int i = 0; i < GroundPos.Capacity; i++)
         {
-            GroundPos.Add((groundoffset * (i + 1)) + new Vector3(0, -0.5f, 0));
+            GroundPos.Add((groundoffset * (i + 1)) + new Vector3(0,-0.2f,0));
         }
     }
 
@@ -50,24 +50,24 @@ public class SpawnManager : MonoBehaviour
                     Vector3 w = GroundPos[g] + GameManager.Instance.Player.transform.position;
                     GameObject clone = Instantiate(temp, w, Quaternion.identity);
                     clone.name = "ENEMY";
-                    g++;
                 }
                 else
                 {
-                    Vector3 w = AirPos[a] + GameManager.Instance.Player.transform.position;
+                    Vector3 w = new Vector3(AirPos[a].x, 0) + GameManager.Instance.Player.transform.position;
 
                     GameObject clone = Instantiate(temp, AirPos[0] + GameManager.Instance.Player.transform.position, Quaternion.identity);
                     clone.name = "ENEMY";
-                    a++;
                 }
             }
             else
             {
-                Vector3 w = GroundPos[g] + GameManager.Instance.Player.transform.position;
+                Vector3 w = new Vector3(GroundPos[g].x,GroundPos[g].y) + GameManager.Instance.Player.transform.position;
                 GameObject clone = Instantiate(temp, w, Quaternion.identity);
                 clone.name = "PickUp";
-                g++;
             }
+
+            a++;
+            g++;
         }
 
         spawnTimer = 2.0f;

@@ -70,8 +70,10 @@ public class SideEnemy : MonoBehaviour, IEnemy
 
         if (boxCollider.bounds.Intersects(GameManager.Instance.Steve.Stevebounds))
         {
+            Debug.Log("Stun steve");
             GameManager.Instance.Steve.running = false;
             GameManager.Instance.Steve.timer = 2.0f;
+            GameManager.Instance.Steve.state = AnimStates.Stunned;
             stunTimer = 5.0f;
             canStun = false;
         }
@@ -86,4 +88,6 @@ public class SideEnemy : MonoBehaviour, IEnemy
     {
         Destroy(gameObject);
     }
+
+
 }
