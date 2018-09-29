@@ -12,9 +12,12 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D rb;
 
+    [HideInInspector]
+    public Animator anim;
+
     private void Awake()
     {
-
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -26,9 +29,8 @@ public class PlayerMovement : MonoBehaviour
     {
         PLcollider.center = transform.position;
         if (stunned)
-        {
             return;
-        }
+
         float hor = Input.GetAxis("Horizontal");
         transform.position += Vector3.right * hor * movementSpeed * Time.deltaTime;
 
@@ -39,6 +41,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
             Jump();
+
+
+        float animHor = Input.GetAxisRaw("Horizontal");
+        anim.SetBool("Running", (animHor != 0 ? true : false)); 
     }
 
     void Jump()
@@ -51,7 +57,9 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
         else
+        {
             Debug.Log("not grounded");
+        }
     }
 
     public IEnumerator StunRecover(float duration)

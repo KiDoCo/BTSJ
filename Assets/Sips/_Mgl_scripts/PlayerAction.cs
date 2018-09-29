@@ -11,9 +11,11 @@ public class PlayerAction : MonoBehaviour
     [SerializeField] float attackTimer, attackCooldown = .3f;
     bool attacking;
 
+    Animator anim;
+
     private void Start()
     {
-        
+        anim = GameManager.Instance.Player.anim;
     }
 
     void Update()
@@ -40,6 +42,8 @@ public class PlayerAction : MonoBehaviour
     {
         attacking = true;
         attackTimer = attackCooldown;
+
+        anim.SetTrigger("Attack");
 
         if(enemies.Count != 0)
         {
