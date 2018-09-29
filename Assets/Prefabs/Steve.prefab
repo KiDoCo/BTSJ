@@ -1734,10 +1734,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36fd28fecb4d6ae448fcf4e187868628, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
   distance_debug: 0
+  Stevebounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1, y: 1, z: 1}
   speed: 10
   goal: {fileID: 0}
+  steveAlive: 0
   timer: 2.3
+  running: 0
 --- !u!114 &114893384434081874
 MonoBehaviour:
   m_ObjectHideFlags: 1

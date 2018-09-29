@@ -56,3 +56,6 @@ TagManager:
   - name: Fore
     uniqueID: 4185733353
     locked: 0
+  - name: Enemy
+    uniqueID: 119879737
+    locked: 0

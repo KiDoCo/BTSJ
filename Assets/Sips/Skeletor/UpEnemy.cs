@@ -67,6 +67,7 @@ public class UpEnemy : MonoBehaviour
         JumpDate();
         if (boxCollider.bounds.Intersects(GameManager.Instance.Player.PLcollider))
         {
+            Debug.Log("Stunning player");
             StartCoroutine(GameManager.Instance.Player.StunRecover(1.5f));
             GameManager.Instance.Player.stunned = true;
             stunTimer = 5.0f;
@@ -76,8 +77,10 @@ public class UpEnemy : MonoBehaviour
 
         if (boxCollider.bounds.Intersects(GameManager.Instance.Steve.Stevebounds))
         {
+            Debug.Log("sTUNNIG steve");
             GameManager.Instance.Steve.running = false;
             GameManager.Instance.Steve.timer = 2.0f;
+            GameManager.Instance.Steve.state = AnimStates.Stunned;
             stunTimer = 5.0f;
             canStun = false;
         }

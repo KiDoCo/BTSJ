@@ -32,7 +32,6 @@ public class TimerSlider : MonoBehaviour
 
         if(timer.value <= 0f)
         {
-            Debug.Log("Steve died here");
             //RIP STEVE JOBBARNA
             GameManager.Instance.Steve.steveAlive = false;
         }

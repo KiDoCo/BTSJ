@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+    public enum AnimStates { Struck, Running, Stunned, Dead }
 public class SteveAI : MonoBehaviour
 {
 
-    private enum AnimStates { Struck, Running, Stunned, Dead }
-    private AnimStates state;
+    public AnimStates state;
     public bool distance_debug = true;
     private Animator animController;
     public Bounds Stevebounds;
@@ -24,11 +24,12 @@ public class SteveAI : MonoBehaviour
     void Start()
     {
         steveAlive = true;
-        timer = 1.5f;
+        timer = 1.0f;
     }
 
     void Update()
     {
+
 
         if (timer <= 0)
         {
@@ -45,7 +46,6 @@ public class SteveAI : MonoBehaviour
 
         if (!steveAlive)
         {
-            Debug.Log("Dead AF");
             state = AnimStates.Dead;
             return;
         }
@@ -53,7 +53,6 @@ public class SteveAI : MonoBehaviour
         if (!running)
         {
             timer -= Time.deltaTime;
-            state = AnimStates.Stunned;
             return;
         }
         else
@@ -76,10 +75,9 @@ public class SteveAI : MonoBehaviour
 
     private void AnimChanger()
     {
-        if (animController.GetCurrentAnimatorStateInfo(0).IsName("SteveStruck")) return;
 
 
-            if (!animController.GetCurrentAnimatorStateInfo(0).IsName("SteveRuns"))
+        if (!animController.GetCurrentAnimatorStateInfo(0).IsName("SteveRuns"))
         {
             animController.SetBool("Running", state == AnimStates.Running);
         }
@@ -107,4 +105,6 @@ public class SteveAI : MonoBehaviour
         Debug.Log("Steve saved!");
         Destroy(gameObject);
     }
+
 }
+
