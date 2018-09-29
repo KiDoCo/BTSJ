@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerPickThrow : MonoBehaviour
 {
-    List<GameObject> nearObjects = new List<GameObject>();
+    public List<GameObject> nearObjects = new List<GameObject>();
     GameObject holdObject;
 
     float gravity = -18;
