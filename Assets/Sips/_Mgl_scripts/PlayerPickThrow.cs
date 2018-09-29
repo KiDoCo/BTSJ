@@ -18,6 +18,13 @@ public class PlayerPickThrow : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] float height = 25;
 
+    Animator anim;
+
+    private void Start()
+    {
+        anim = GameManager.Instance.Player.anim;
+    }
+
     void Update()
     {
 
@@ -100,8 +107,9 @@ public class PlayerPickThrow : MonoBehaviour
         holdObject.GetComponent<Rigidbody2D>().isKinematic = false;
         holdObject.GetComponent<Rigidbody2D>().velocity = CalculateThrowData().initialVelocity;
 
-
         holdObject = null;
+
+        anim.SetTrigger("Throw");
     }
 
     struct ThrowData
