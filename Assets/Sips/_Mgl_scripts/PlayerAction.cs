@@ -5,16 +5,11 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
 
-    [SerializeField] Collider2D attackCollider;
+    public List<GameObject> enemies = new List<GameObject>();
     [SerializeField] KeyCode actionKey;
 
     [SerializeField] float attackTimer, attackCooldown = .3f;
     bool attacking;
-
-    void Awake()
-    {
-        attackCollider.enabled = false;
-    }
 
     void Update()
     {
@@ -32,7 +27,6 @@ public class PlayerAction : MonoBehaviour
             else
             {
                 attacking = false;
-                attackCollider.enabled = false;
             }
         }
     }
@@ -41,7 +35,11 @@ public class PlayerAction : MonoBehaviour
     {
         attacking = true;
         attackTimer = attackCooldown;
-        attackCollider.enabled = true;
+
+        if(enemies.Count != 0)
+        {
+            //enemies[0].GetComponent<Health>().TakeDamage(1);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -50,8 +48,7 @@ public class PlayerAction : MonoBehaviour
         {
             if(other.gameObject.tag == "Enemy")
             {
-                // do dmg
-                Debug.Log("hit enemy");
+                enemies.Add(other.gameObject);
             }
             else
             {
@@ -60,14 +57,13 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag != null)
         {
             if (other.gameObject.tag == "Enemy")
             {
-                // do dmg
-                Debug.Log("hit enemy");
+                enemies.Remove(other.gameObject);
             }
             else
             {

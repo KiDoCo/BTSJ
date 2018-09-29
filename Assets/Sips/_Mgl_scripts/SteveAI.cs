@@ -9,7 +9,10 @@ public class SteveAI : MonoBehaviour
     [SerializeField] float speed = 2f;
     [SerializeField] GameObject goal;
     bool steveAlive;
- 
+
+    [SerializeField] float timer = 1f;
+    bool running;
+
     void Start()
     {
 
@@ -17,7 +20,20 @@ public class SteveAI : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.right * speed * Time.deltaTime;
+
+        if(!running)
+        {
+            timer -= Time.deltaTime;
+        }
+        else
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+        }
+
+        if(timer <= 0)
+        {
+            running = true;
+        }
 
         float distance = Vector3.Distance(transform.position, goal.transform.position);
 
