@@ -44,3 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Steve
+    uniqueID: 3793901647
+    locked: 0
+  - name: Broot
+    uniqueID: 841917499
+    locked: 0

@@ -77,11 +77,11 @@ MonoBehaviour:
       useCameraFov: 0
       kernelSize: 1
   motionBlur:
-    m_Enabled: 1
+    m_Enabled: 0
     m_Settings:
-      shutterAngle: 270
-      sampleCount: 10
-      frameBlending: 0
+      shutterAngle: 335
+      sampleCount: 25
+      frameBlending: 0.298
   eyeAdaptation:
     m_Enabled: 0
     m_Settings:
@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       bloom:
-        intensity: 2.1
-        threshold: 1.15
-        softKnee: 0.5
-        radius: 4
+        intensity: 0.15
+        threshold: 1.1
+        softKnee: 1
+        radius: 4.61
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
