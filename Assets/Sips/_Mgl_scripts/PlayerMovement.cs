@@ -27,9 +27,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        PLcollider.center = transform.position;
         float animHor = Input.GetAxisRaw("Horizontal");
-        anim.SetBool("Running", (animHor != 0 && !stunned ? true : false)); 
+        anim.SetBool("Running", (animHor != 0 && !stunned ?  true : false));
+
+        PLcollider.center = transform.position;
         if (stunned)
             return;
 
@@ -43,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
             Jump();
-
 
     }
 
@@ -62,19 +62,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void Recover()
-    {
-        StartCoroutine(StunRecover(2.0f));
-    }
-
     public IEnumerator StunRecover(float duration)
     {
 
-        yield return new WaitForSeconds(duration);
-        Debug.Log("Stunned change");
-            stunned = false;
-        yield return null;
+        while(duration > 0)
+        {
+            duration -= Time.deltaTime;
+            yield return null;
+        }
+
+        yield return stunned = false;
     }
 
+    public void Recover()
+    {
+        StartCoroutine(StunRecover(.75f));
+    }
 
 }
