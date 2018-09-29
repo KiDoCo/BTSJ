@@ -23,7 +23,6 @@ public class SideEnemy : MonoBehaviour, IEnemy
 
     private void OnBecameVisible()
     {
-        Debug.Log("Visible");
         canMove = true;
     }
 
@@ -54,11 +53,8 @@ public class SideEnemy : MonoBehaviour, IEnemy
 
         if (boxCollider.bounds.Intersects(GameManager.Instance.Player.PLcollider))
         {
-            Debug.Log("Getting here");
             GameManager.Instance.Player.stunned = true;
-            StartCoroutine(GameManager.Instance.Player.StunRecover(1.5f));
-
-            Debug.Log("stunning");
+            GameManager.Instance.Player.Recover();
             stunTimer = 5.0f;
             canStun = false;
 

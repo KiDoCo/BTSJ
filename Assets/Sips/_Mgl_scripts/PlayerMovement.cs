@@ -28,6 +28,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         PLcollider.center = transform.position;
+        float animHor = Input.GetAxisRaw("Horizontal");
+        anim.SetBool("Running", (animHor != 0 && !stunned ? true : false)); 
         if (stunned)
             return;
 
@@ -43,8 +45,6 @@ public class PlayerMovement : MonoBehaviour
             Jump();
 
 
-        float animHor = Input.GetAxisRaw("Horizontal");
-        anim.SetBool("Running", (animHor != 0 ? true : false)); 
     }
 
     void Jump()
@@ -62,16 +62,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void Recover()
+    {
+        StartCoroutine(StunRecover(2.0f));
+    }
+
     public IEnumerator StunRecover(float duration)
     {
 
-        while(duration > 0)
-        {
-            duration -= Time.deltaTime;
-            yield return null;
-        }
-
-        yield return stunned = false;
+        yield return new WaitForSeconds(duration);
+        Debug.Log("Stunned change");
+            stunned = false;
+        yield return null;
     }
 
 

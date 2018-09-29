@@ -37,7 +37,6 @@ public class PlayerAction : MonoBehaviour
             }
         }
 
-        //if(GetComponent<Collider2D>().bounds.Intersects())
     }
 
     void Attack()

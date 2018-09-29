@@ -26,11 +26,6 @@ public class UpEnemy : MonoBehaviour, IEnemy
         boxCollider = GetComponent<Collider2D>();
     }
 
-    private void Start()
-    {
-
-    }
-
     private void OnBecameVisible()
     {
         Debug.Log("Visible");
@@ -62,9 +57,8 @@ public class UpEnemy : MonoBehaviour, IEnemy
         JumpDate();
         if (boxCollider.bounds.Intersects(GameManager.Instance.Player.PLcollider))
         {
-            Debug.Log("Stunning player");
-            StartCoroutine(GameManager.Instance.Player.StunRecover(1.5f));
             GameManager.Instance.Player.stunned = true;
+            GameManager.Instance.Player.Recover();
             stunTimer = 5.0f;
             canStun = false;
             transform.position = new Vector3(transform.position.x, groundLevelDead, transform.position.z);
@@ -73,7 +67,6 @@ public class UpEnemy : MonoBehaviour, IEnemy
 
         if (boxCollider.bounds.Intersects(GameManager.Instance.Steve.Stevebounds))
         {
-            Debug.Log("sTUNNIG steve");
             GameManager.Instance.Steve.running = false;
             GameManager.Instance.Steve.timer = 2.0f;
             GameManager.Instance.Steve.state = AnimStates.Stunned;
@@ -108,7 +101,7 @@ public class UpEnemy : MonoBehaviour, IEnemy
     }
 
     public void TakeDamage()
-    {
+    { 
         Destroy(gameObject);
     }
 }
