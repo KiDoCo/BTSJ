@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpEnemy : MonoBehaviour {
+public class UpEnemy : MonoBehaviour
+{
 
     private Collider2D boxCollider;
     [SerializeField] LayerMask ground;
@@ -57,43 +58,45 @@ public class UpEnemy : MonoBehaviour {
     {
         m_velocity.y = m_jumping ? m_velocity.y - 9.81f * Time.deltaTime : 0;
         Timer();
-       // m_jumping = Physics2D.Raycast(transform.position, -Vector3.up, distance, ground) ? true : false;
+
         if (!canStun)
             return;
-        else
-        {
-            transform.position += new Vector3(0, m_velocity.y, 0) * Time.deltaTime;
-            Jump();
-        }
 
-
+        Jump();
+        transform.position += new Vector3(0, m_velocity.y, 0) * Time.deltaTime;
         JumpDate();
-
-
         if (boxCollider.bounds.Intersects(GameManager.Instance.Player.PLcollider))
         {
-            Debug.Log("Getting here");
             StartCoroutine(GameManager.Instance.Player.StunRecover(1.5f));
             GameManager.Instance.Player.stunned = true;
-            Debug.Log("stunning");
             stunTimer = 5.0f;
             canStun = false;
 
         }
 
+        if (boxCollider.bounds.Intersects(GameManager.Instance.Steve.Stevebounds))
+        {
+            GameManager.Instance.Steve.running = false;
+            GameManager.Instance.Steve.timer = 2.0f;
+            stunTimer = 5.0f;
+            canStun = false;
+        }
     }
 
     private void JumpDate()
     {
-        if (!m_jumping) return;
 
-        if (transform.position.y < groundLevelDead || transform.position.y > groundLevelAlive)
+        if (transform.position.y < groundLevelDead)
         {
+            m_jumping = false;
             return;
         }
 
-        m_jumping = false;
-        transform.position = new Vector3(transform.position.x, groundLevelAlive, transform.position.z);
+        if (transform.position.y > groundLevelAlive)
+        {
+            m_jumping = true;
+        }
+
     }
 
     private void Jump()
@@ -101,7 +104,6 @@ public class UpEnemy : MonoBehaviour {
         if (m_jumping) return;
 
         m_velocity.y = jumpSpeed;
-        m_jumping = true;
         transform.position += Vector3.up * 0.025f;
     }
 

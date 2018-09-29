@@ -11,6 +11,11 @@ public class PlayerAction : MonoBehaviour
     [SerializeField] float attackTimer, attackCooldown = .3f;
     bool attacking;
 
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
         if(Input.GetKeyDown(actionKey) && !attacking)

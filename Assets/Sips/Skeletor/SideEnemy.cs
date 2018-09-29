@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class SideEnemy : MonoBehaviour
@@ -24,11 +25,6 @@ public class SideEnemy : MonoBehaviour
     {
         Debug.Log("Visible");
         canMove = true;
-    }
-
-    private void StunEntity(object o)
-    {
-        //insert logic for stun here plz plox
     }
 
     private void Timer()
@@ -59,12 +55,21 @@ public class SideEnemy : MonoBehaviour
         if (boxCollider.bounds.Intersects(GameManager.Instance.Player.PLcollider))
         {
             Debug.Log("Getting here");
-            StartCoroutine(GameManager.Instance.Player.StunRecover(1.5f));
             GameManager.Instance.Player.stunned = true;
+            StartCoroutine(GameManager.Instance.Player.StunRecover(1.5f));
+
             Debug.Log("stunning");
             stunTimer = 5.0f;
             canStun = false;
 
+        }
+
+        if (boxCollider.bounds.Intersects(GameManager.Instance.Steve.Stevebounds))
+        {
+            GameManager.Instance.Steve.running = false;
+            GameManager.Instance.Steve.timer = 2.0f;
+            stunTimer = 5.0f;
+            canStun = false;
         }
 
     }
