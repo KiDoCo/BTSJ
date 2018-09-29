@@ -65,6 +65,11 @@ public class PlayerPickThrow : MonoBehaviour
 
     void PickUp(GameObject pickup)
     {
+        if (pickup == null)
+        {
+            nearObjects.Clear();
+            return;
+        }
         holding = true;
         holdObject = pickup;
         nearObjects.Remove(nearObjects[0]);
@@ -77,6 +82,7 @@ public class PlayerPickThrow : MonoBehaviour
 
     ThrowData CalculateThrowData()
     {
+        if (holdObject == null) return new ThrowData(new Vector3(0,0,0), 0);
         float displacementY = target.position.y - holdObject.transform.position.y;
         Vector2 displacementX = new Vector2(target.position.x - holdObject.transform.position.x, 0);
         float time = Mathf.Sqrt(-2 * height / gravity) + Mathf.Sqrt(2 * (displacementY - height) / gravity);

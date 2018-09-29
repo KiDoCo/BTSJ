@@ -48,6 +48,7 @@ public class PlayerAction : MonoBehaviour
 
         if (enemies.Count != 0)
         {
+            if (enemies[0] == null) return;
             enemies[0].GetComponent<IEnemy>().TakeDamage();
         }
     }
