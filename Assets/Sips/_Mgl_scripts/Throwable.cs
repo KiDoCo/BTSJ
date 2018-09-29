@@ -13,6 +13,8 @@ public class Throwable : MonoBehaviour
         {
             if(gameObject.tag == "GasCan")
             {
+                SpawnManager.spawnedEntities.Remove(gameObject);
+                SpawnManager.spawnedEntities.Remove(other.gameObject);
                 Destroy(other.gameObject);
                 Destroy(gameObject);
             }
@@ -22,13 +24,18 @@ public class Throwable : MonoBehaviour
         {
             if(gameObject.tag == "GasCan")
             {
+                EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 1);
                 FindObjectOfType<TimerSlider>().LoseTime(0.1f);
                 Destroy(gameObject);
+                SpawnManager.spawnedEntities.Remove(gameObject);
+
             }
 
-            if(gameObject.tag == "WaterBottle")
+            if (gameObject.tag == "WaterBottle")
             {
+                EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 3);
                 FindObjectOfType<TimerSlider>().AddTime(0.15f);
+                SpawnManager.spawnedEntities.Remove(gameObject);
                 Destroy(gameObject);
             }
         }
@@ -56,6 +63,7 @@ public class Throwable : MonoBehaviour
         if((GameManager.Instance.Player.transform.position -gameObject.transform.position).magnitude >= 150.0f)
         {
             Debug.Log("Destroying");
+            SpawnManager.spawnedEntities.Remove(gameObject);
             Destroy(gameObject);
         }
     }

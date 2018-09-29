@@ -80,12 +80,16 @@ public class SideEnemy : MonoBehaviour, IEnemy
 
         if ((GameManager.Instance.Player.transform.position - gameObject.transform.position).magnitude >= 150.0f)
         {
+            SpawnManager.spawnedEntities.Remove(gameObject);
+
             Destroy(gameObject);
         }
     }
 
     public void TakeDamage()
     {
+        SpawnManager.spawnedEntities.Remove(gameObject);
+
         Destroy(gameObject);
     }
 

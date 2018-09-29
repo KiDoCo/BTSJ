@@ -9,6 +9,13 @@ public class SpawnManager : MonoBehaviour
 
     private List<Vector3> AirPos = new List<Vector3>(3);
     private List<Vector3> GroundPos = new List<Vector3>(3);
+    [SerializeField] private float valueOffset;
+    [SerializeField] private float distance;
+    int a = 0;
+    int g = 0;
+
+    public static List<GameObject> spawnedEntities = new List<GameObject>();
+
     private Vector3 airoffset = new Vector3(30.0f, 0.0f, 0);
     private Vector3 groundoffset = new Vector3(30.0f, 0.0f, 0);
     private float spawnTimer;
@@ -28,6 +35,8 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
+    airoffset = new Vector3(valueOffset, 0.0f, 0);
+    groundoffset = new Vector3(valueOffset, 0.0f, 0);
         if (spawnTimer >= 0)
         {
             spawnTimer -= Time.deltaTime;
@@ -35,28 +44,48 @@ public class SpawnManager : MonoBehaviour
         }
 
         int number = Random.Range(0, 4);
-
-        int g = 0;
-        int a = 0;
         for (int i = 0; i < number; i++)
         {
             int r = Random.Range(0, 6);
             GameObject temp = prefabs[r];
 
+            for (int x = 0; x < spawnedEntities.Count; x++)
+            {
+                if (Vector3.Distance((AirPos[a] + GameManager.Instance.transform.position) , spawnedEntities[x].transform.position) >= distance ||  Vector3.Distance((GroundPos[g] + GameManager.Instance.transform.position) , spawnedEntities[x].transform.position) >= distance)
+                {
+                    Debug.Log(Vector3.Distance((AirPos[a] + GameManager.Instance.transform.position), spawnedEntities[x].transform.position));
+                    Debug.Log("trying next spot");
+                    a++;
+                    g++;
+
+                    if(g >= 3)
+                    {
+                        g = 0;
+                        a = 0;
+                    }
+                    return;
+                }
+            }
+
             if (temp.GetComponent<MonoBehaviour>() is IEnemy)
             {
                 if (temp.GetComponent<IEnemy>().id == "GroundE")
-                {
+                { 
+
                     Vector3 w = GroundPos[g] + GameManager.Instance.Player.transform.position;
                     GameObject clone = Instantiate(temp, w, Quaternion.identity);
                     clone.name = "ENEMY";
+                    spawnedEntities.Add(clone);
                 }
                 else
                 {
+
+
                     Vector3 w = new Vector3(AirPos[a].x, 0) + GameManager.Instance.Player.transform.position;
 
                     GameObject clone = Instantiate(temp, AirPos[0] + GameManager.Instance.Player.transform.position, Quaternion.identity);
                     clone.name = "ENEMY";
+                    spawnedEntities.Add(clone);
                 }
             }
             else
@@ -64,12 +93,19 @@ public class SpawnManager : MonoBehaviour
                 Vector3 w = new Vector3(GroundPos[g].x,GroundPos[g].y) + GameManager.Instance.Player.transform.position;
                 GameObject clone = Instantiate(temp, w, Quaternion.identity);
                 clone.name = "PickUp";
+                spawnedEntities.Add(clone);
             }
 
             a++;
             g++;
+
+            if (g >= 3)
+            {
+                g = 0;
+                a = 0;
+            }
         }
 
-        spawnTimer = 2.0f;
+        spawnTimer = 3.5f;
     }
 }

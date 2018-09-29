@@ -77,6 +77,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Recover()
     {
+        EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 0);
 		StartCoroutine(StunRecover(1.0f));
     }
 

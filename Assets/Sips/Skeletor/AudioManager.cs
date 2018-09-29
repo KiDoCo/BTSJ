@@ -16,8 +16,10 @@ public class AudioManager : MonoBehaviour
     //list of sounds and their id
 
     /* Sound Effect ID list (SFX)
-
-
+    0:broot
+    1:gaspickup
+    2:steve
+    3:water
      */
 
     /* Music ID list
@@ -95,6 +97,9 @@ public class AudioManager : MonoBehaviour
                 MusicSource = GetComponentsInChildren<AudioSource>()[i];
             }
         }
+
+        SFXClips.AddRange(Resources.LoadAll<AudioClip>(""));
+
         soundDelegate += MusicVolumeChanger;
     }
 

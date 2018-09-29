@@ -86,7 +86,7 @@ public class SteveAI : MonoBehaviour
         {
             if (state == AnimStates.Stunned)
             {
-                Debug.Log("change to stunned");
+                EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 2);
                 animController.SetTrigger("Stunned");
             }
         }
