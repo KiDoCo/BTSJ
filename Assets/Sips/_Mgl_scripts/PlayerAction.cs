@@ -20,14 +20,14 @@ public class PlayerAction : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(actionKey) && !attacking)
+        if (Input.GetKeyDown(actionKey) && !attacking)
         {
             Attack();
         }
 
-        if(attacking)
+        if (attacking)
         {
-            if(attackTimer > 0)
+            if (attackTimer > 0)
             {
                 attackTimer -= Time.deltaTime;
             }
@@ -36,6 +36,8 @@ public class PlayerAction : MonoBehaviour
                 attacking = false;
             }
         }
+
+        //if(GetComponent<Collider2D>().bounds.Intersects())
     }
 
     void Attack()
@@ -45,17 +47,17 @@ public class PlayerAction : MonoBehaviour
 
         anim.SetTrigger("Attack");
 
-        if(enemies.Count != 0)
+        if (enemies.Count != 0)
         {
-            //enemies[0].GetComponent<Health>().TakeDamage(1);
+            enemies[0].GetComponent<IEnemy>().TakeDamage();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag != null)
+        if (other.gameObject.tag != null)
         {
-            if(other.gameObject.tag == "Enemy")
+            if (other.gameObject.tag == "Enemy")
             {
                 enemies.Add(other.gameObject);
             }

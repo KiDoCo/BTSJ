@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public class SideEnemy : MonoBehaviour
+public class SideEnemy : MonoBehaviour, IEnemy
 {
     private Collider2D boxCollider;
     private bool canMove = false;
@@ -74,7 +74,7 @@ public class SideEnemy : MonoBehaviour
 
     }
 
-    private void TakeDamage()
+    public void TakeDamage()
     {
         Destroy(gameObject);
     }

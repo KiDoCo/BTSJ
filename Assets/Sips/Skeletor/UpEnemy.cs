@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpEnemy : MonoBehaviour
+public class UpEnemy : MonoBehaviour, IEnemy
 {
 
     private Collider2D boxCollider;
@@ -37,11 +37,6 @@ public class UpEnemy : MonoBehaviour
         canMove = true;
     }
 
-    private void StunEntity(object o)
-    {
-        //insert logic for stun here plz plox
-    }
-
     private void Timer()
     {
         if (stunTimer < 0)
@@ -72,6 +67,7 @@ public class UpEnemy : MonoBehaviour
             GameManager.Instance.Player.stunned = true;
             stunTimer = 5.0f;
             canStun = false;
+            transform.position = new Vector3(transform.position.x, groundLevelDead, transform.position.z);
 
         }
 
@@ -83,6 +79,7 @@ public class UpEnemy : MonoBehaviour
             GameManager.Instance.Steve.state = AnimStates.Stunned;
             stunTimer = 5.0f;
             canStun = false;
+            transform.position = new Vector3(transform.position.x, groundLevelDead, transform.position.z);
         }
     }
 
@@ -110,8 +107,15 @@ public class UpEnemy : MonoBehaviour
         transform.position += Vector3.up * 0.025f;
     }
 
-    private void TakeDamage()
+    public void TakeDamage()
     {
         Destroy(gameObject);
     }
 }
+
+public interface IEnemy
+    {
+    void TakeDamage();
+    }
+
+
