@@ -13,6 +13,14 @@ public class FlyEnemy : MonoBehaviour, IEnemy
 
     [SerializeField] GameObject crap;
 
+    public string id
+    {
+        get
+        {
+            return "FlyE";
+        }
+    }
+
     void OnEnable()
     {
         currentType = (Random.Range(0, 2) == 0) ? Type.sinWave : Type.crappy;

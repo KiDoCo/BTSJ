@@ -9,7 +9,7 @@ public class SpawnManager : MonoBehaviour
 
     private List<Vector3> AirPos = new List<Vector3>(3);
     private List<Vector3> GroundPos = new List<Vector3>(3);
-    private Vector3 airoffset = new Vector3(30.0f, 0.5f, 0);
+    private Vector3 airoffset = new Vector3(30.0f, 0.0f, 0);
     private Vector3 groundoffset = new Vector3(30.0f, 0.0f, 0);
     private float spawnTimer;
 
@@ -40,7 +40,7 @@ public class SpawnManager : MonoBehaviour
         int a = 0;
         for (int i = 0; i < number; i++)
         {
-            int r = Random.Range(0, 4);
+            int r = Random.Range(0, 6);
             GameObject temp = prefabs[r];
 
             if (temp.GetComponent<MonoBehaviour>() is IEnemy)
