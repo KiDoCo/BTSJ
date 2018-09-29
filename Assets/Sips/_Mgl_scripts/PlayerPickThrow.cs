@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerPickThrow : MonoBehaviour
 {
+    public bool drawRay = false;
+
     public List<GameObject> nearObjects = new List<GameObject>();
     GameObject holdObject;
 
-    float gravity = -18;
+    float gravity = -28;
 
     [SerializeField] Transform itemPos;
     [SerializeField] KeyCode action;
@@ -82,24 +84,27 @@ public class PlayerPickThrow : MonoBehaviour
 
     void DrawRay()
     {
-        ThrowData throwData = CalculateThrowData();
-        Vector3 previousDrawPoint = holdObject.transform.position;
-
-        int resolution = 30;
-        for (int i = 1; i <= resolution; i++)
+        if(drawRay)
         {
-            float simulationTime = i / (float)resolution * throwData.timeToTarget;
-            Vector3 displacement = throwData.initialVelocity * simulationTime + Vector3.up * gravity * simulationTime * simulationTime / 4;
-            Vector3 drawPoint = holdObject.transform.position + displacement;
-            Debug.DrawLine(previousDrawPoint, drawPoint);
-            previousDrawPoint = drawPoint;
+            ThrowData throwData = CalculateThrowData();
+            Vector3 previousDrawPoint = holdObject.transform.position;
+
+            int resolution = 30;
+            for (int i = 1; i <= resolution; i++)
+            {
+                float simulationTime = i / (float)resolution * throwData.timeToTarget;
+                Vector3 displacement = throwData.initialVelocity * simulationTime + Vector3.up * gravity * simulationTime * simulationTime / 4;
+                Vector3 drawPoint = holdObject.transform.position + displacement;
+                Debug.DrawLine(previousDrawPoint, drawPoint);
+                previousDrawPoint = drawPoint;
+            }
         }
     }
 
     void Throw()
     {
         Physics.gravity = Vector3.up * gravity;
-        holdObject.GetComponent<Rigidbody2D>().gravityScale = 1;
+        holdObject.GetComponent<Rigidbody2D>().gravityScale = 2;
 
         timer = 0.3f;
         holding = false;
