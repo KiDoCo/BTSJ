@@ -71,7 +71,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         yield return new WaitForSeconds(duration);
-        Debug.Log("Stunned change");
             stunned = false;
         yield return null;
     }
