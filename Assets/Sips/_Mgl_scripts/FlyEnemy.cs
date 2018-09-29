@@ -13,6 +13,14 @@ public class FlyEnemy : MonoBehaviour, IEnemy
 
     [SerializeField] GameObject crap;
 
+    public string id
+    {
+        get
+        {
+            return "FlyE";
+        }
+    }
+
     void OnEnable()
     {
         currentType = (Random.Range(0, 2) == 0) ? Type.sinWave : Type.crappy;
@@ -45,11 +53,18 @@ public class FlyEnemy : MonoBehaviour, IEnemy
                 TakeAShit();
             }
         }
+
+        if ((GameManager.Instance.Player.transform.position - gameObject.transform.position).magnitude >= 150.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void TakeAShit()
     {
         GameObject shit = Instantiate(crap, transform.position + -Vector3.up * GetComponent<CircleCollider2D>().radius, Quaternion.identity);
+        shit.tag = "Crap";
+        shit.AddComponent<Throwable>();
         Destroy(shit, 1f);
     }
 

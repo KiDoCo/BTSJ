@@ -86,6 +86,7 @@ public class SteveAI : MonoBehaviour
         {
             if (state == AnimStates.Stunned)
             {
+                Debug.Log("change to stunned");
                 animController.SetTrigger("Stunned");
             }
         }
@@ -105,6 +106,5 @@ public class SteveAI : MonoBehaviour
         Debug.Log("Steve saved!");
         Destroy(gameObject);
     }
-
 }
 

@@ -11,6 +11,14 @@ public class SideEnemy : MonoBehaviour, IEnemy
     private float stunTimer;
     private float moveValue = 5.0f;
 
+    public string id
+    {
+        get
+        {
+            return "GroundE";
+        }
+    }
+
     private void Awake()
     {
         boxCollider = GetComponent<Collider2D>();
@@ -62,16 +70,24 @@ public class SideEnemy : MonoBehaviour, IEnemy
 
         if (boxCollider.bounds.Intersects(GameManager.Instance.Steve.Stevebounds))
         {
+            Debug.Log("Stun steve");
             GameManager.Instance.Steve.running = false;
             GameManager.Instance.Steve.timer = 2.0f;
+            GameManager.Instance.Steve.state = AnimStates.Stunned;
             stunTimer = 5.0f;
             canStun = false;
         }
 
+        if ((GameManager.Instance.Player.transform.position - gameObject.transform.position).magnitude >= 150.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void TakeDamage()
     {
         Destroy(gameObject);
     }
+
+
 }

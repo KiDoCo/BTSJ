@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 114091023039917200}
   m_Layer: 12
   m_Name: Pickup
-  m_TagString: Pickup
+  m_TagString: WaterBottle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -86,7 +86,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.24}
+  m_Size: {x: 0.56, y: 0.56}
   m_EdgeRadius: 0
 --- !u!114 &114091023039917200
 MonoBehaviour:

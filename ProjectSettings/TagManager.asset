@@ -7,6 +7,10 @@ TagManager:
   - Floor
   - Enemy
   - Pickup
+  - WaterBottle
+  - Steve
+  - GasCan
+  - Crap
   layers:
   - Default
   - TransparentFX

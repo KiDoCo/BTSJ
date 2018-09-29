@@ -32,10 +32,12 @@ public class PlayerPickThrow : MonoBehaviour
 
         if(Input.GetKeyDown(action) && nearObjects.Count != 0 && !holding)
         {
+            nearObjects[0].GetComponent<Throwable>().held = true;
             PickUp(nearObjects[0]);
+
         }
 
-        if(holding)
+        if (holding)
         {
             timer -= Time.deltaTime;
             DrawRay();
@@ -49,18 +51,29 @@ public class PlayerPickThrow : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Pickup")
+        if(other.GetComponent<Throwable>() != null && other.tag != "Crap")
+        {
             nearObjects.Add(other.gameObject);
+            Debug.Log("Getting pickup");
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Pickup")
+        if (other.GetComponent<Throwable>() != null && other.tag != "Crap")
+        {
             nearObjects.Remove(other.gameObject);
+            Debug.Log("No pick up");
+        }
     }
 
     void PickUp(GameObject pickup)
     {
+        if (pickup == null)
+        {
+            nearObjects.Clear();
+            return;
+        }
         holding = true;
         holdObject = pickup;
         nearObjects.Remove(nearObjects[0]);
@@ -68,11 +81,13 @@ public class PlayerPickThrow : MonoBehaviour
         pickup.transform.position = itemPos.position;
         pickup.GetComponent<Rigidbody2D>().isKinematic = true;
         pickup.GetComponent<Rigidbody2D>().gravityScale = 0;
+        pickup.GetComponent<Collider2D>().enabled = false;
         holdObject.transform.parent = transform;
     }
 
     ThrowData CalculateThrowData()
     {
+        if (holdObject == null) return new ThrowData(new Vector3(0,0,0), 0);
         float displacementY = target.position.y - holdObject.transform.position.y;
         Vector2 displacementX = new Vector2(target.position.x - holdObject.transform.position.x, 0);
         float time = Mathf.Sqrt(-2 * height / gravity) + Mathf.Sqrt(2 * (displacementY - height) / gravity);
@@ -111,7 +126,8 @@ public class PlayerPickThrow : MonoBehaviour
         holdObject.transform.parent = null;
         holdObject.GetComponent<Rigidbody2D>().isKinematic = false;
         holdObject.GetComponent<Rigidbody2D>().velocity = CalculateThrowData().initialVelocity;
-
+        holdObject.GetComponent<Collider2D>().enabled = true;
+        holdObject.GetComponent<Throwable>().held = false;
         holdObject = null;
 
         anim.SetTrigger("Throw");

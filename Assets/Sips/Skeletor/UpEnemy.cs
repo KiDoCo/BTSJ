@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class UpEnemy : MonoBehaviour, IEnemy
 {
-
     private Collider2D boxCollider;
     [SerializeField] LayerMask ground;
     private float distance = 1.0f;
@@ -20,6 +19,14 @@ public class UpEnemy : MonoBehaviour, IEnemy
     public float jumpSpeed;
     internal bool m_jumping;
     private bool descend;
+
+    public string id
+    {
+        get
+        {
+            return "GroundE";
+        }
+    }
 
     private void Awake()
     {
@@ -67,12 +74,19 @@ public class UpEnemy : MonoBehaviour, IEnemy
 
         if (boxCollider.bounds.Intersects(GameManager.Instance.Steve.Stevebounds))
         {
+            Debug.Log("Stun steve");
+
             GameManager.Instance.Steve.running = false;
             GameManager.Instance.Steve.timer = 2.0f;
             GameManager.Instance.Steve.state = AnimStates.Stunned;
             stunTimer = 5.0f;
             canStun = false;
             transform.position = new Vector3(transform.position.x, groundLevelDead, transform.position.z);
+        }
+
+        if((GameManager.Instance.Player.transform.position - gameObject.transform.position).magnitude >= 150.0f)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -109,6 +123,7 @@ public class UpEnemy : MonoBehaviour, IEnemy
 public interface IEnemy
     {
     void TakeDamage();
+    string id { get; }
     }
 
 
