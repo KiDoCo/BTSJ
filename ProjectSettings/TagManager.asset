@@ -41,6 +41,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Back
+    uniqueID: 1170902513
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -49,4 +52,7 @@ TagManager:
     locked: 0
   - name: Broot
     uniqueID: 841917499
+    locked: 0
+  - name: Fore
+    uniqueID: 4185733353
     locked: 0
