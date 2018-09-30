@@ -13,7 +13,11 @@ public class Throwable : MonoBehaviour
         {
             if(gameObject.tag == "GasCan")
             {
-
+                Destroy(other.gameObject);
+                Destroy(gameObject);
+            }
+            else if(gameObject.tag == "Pickup")
+            {
                 Destroy(other.gameObject);
                 Destroy(gameObject);
             }

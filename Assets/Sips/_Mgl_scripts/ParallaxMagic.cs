@@ -5,16 +5,20 @@ using UnityEngine;
 public class ParallaxMagic : MonoBehaviour
 {
 
-    [SerializeField] GameObject[] parallaxes = new GameObject[3];
+    Vector3 startPos;
     float parallaxWidth = 94f;
 
     void Start()
     {
-        
+        startPos = transform.parent.transform.position;
     }
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Reset();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,11 +27,12 @@ public class ParallaxMagic : MonoBehaviour
         {
 
             transform.parent.transform.position += Vector3.right * parallaxWidth;
-
-            //for (int i = 0; i < parallaxes.Length; i++)
-            //{
-            //    parallaxes[i].transform.position += Vector3.right * parallaxWidth;
-            //}
         }
+    }
+
+    public void Reset()
+    {
+        transform.parent.transform.position = startPos;
+        Debug.Log("reset");
     }
 }

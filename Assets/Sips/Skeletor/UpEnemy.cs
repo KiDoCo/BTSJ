@@ -79,6 +79,7 @@ public class UpEnemy : MonoBehaviour, IEnemy
             GameManager.Instance.Steve.running = false;
             GameManager.Instance.Steve.timer = 2.0f;
             GameManager.Instance.Steve.state = AnimStates.Stunned;
+            GameManager.Instance.Steve.GetComponentInChildren<Animator>().SetTrigger("Stunned");
             stunTimer = 5.0f;
             canStun = false;
             transform.position = new Vector3(transform.position.x, groundLevelDead, transform.position.z);

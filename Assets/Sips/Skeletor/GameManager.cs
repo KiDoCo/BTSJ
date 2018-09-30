@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,7 +54,6 @@ public class GameManager : MonoBehaviour
         EventManager.Broadcast(EVENT.endGame);
     }
 
-
     IEnumerator Fade(float duration, bool FadeIn)
     {
         Color a = Color.black;
@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 UI.SetActive(false);
-                FadeInObject.GetComponent<SpriteRenderer>().color = Color.Lerp(a, b, Time.deltaTime);
+                FadeInObject.GetComponent<SpriteRenderer>().color = Color.Lerp(a, b, Time.deltaTime / 2);
             }
             duration -= Time.deltaTime;
             yield return null;
@@ -79,8 +79,8 @@ public class GameManager : MonoBehaviour
         {
             UI.SetActive(true);
             yield return null;
-
         }
+
         yield return null;
     }
 }
