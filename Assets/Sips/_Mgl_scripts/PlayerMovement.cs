@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] LayerMask ground;
     public Bounds PLcollider;
     public bool stunned;
+    private bool End;
 
     Rigidbody2D rb;
 
@@ -19,14 +20,13 @@ public class PlayerMovement : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    private void Start()
-    {
+        EventManager.ActionAddHandler(EVENT.endGame, EndGame);
     }
 
     void FixedUpdate()
     {
+        if (End) return;
+
         float animHor = Input.GetAxisRaw("Horizontal");
         anim.SetBool("Running", (animHor != 0 && !stunned ?  true : false));
 
@@ -79,6 +79,11 @@ public class PlayerMovement : MonoBehaviour
     {
         EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 0);
 		StartCoroutine(StunRecover(1.0f));
+    }
+
+    public void EndGame()
+    {
+        End = true;
     }
 
 }

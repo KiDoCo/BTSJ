@@ -5,14 +5,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    [HideInInspector]public PlayerMovement Player;
-    [HideInInspector]public SteveAI Steve;
-    [HideInInspector]public SideEnemy sideEnemy;
+    [HideInInspector] public PlayerMovement Player;
+    [HideInInspector] public SteveAI Steve;
+    [HideInInspector] public SideEnemy sideEnemy;
     [HideInInspector] public UpEnemy upEnemy;
+    [SerializeField] GameObject FadeInObject;
+    [SerializeField] GameObject UI;
 
     private void Awake()
     {
         Instance = this;
+        UI.SetActive(false);
         Player = FindObjectOfType<PlayerMovement>();
         Steve = FindObjectOfType<SteveAI>();
         sideEnemy = FindObjectOfType<SideEnemy>();
@@ -24,6 +27,48 @@ public class GameManager : MonoBehaviour
         if(Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
+        }    }
+    void StartGame()
+    {
+        StartCoroutine(Fade(1.5f, true));
+    }    public void ResetGame()
+    {
+        BroadcastMessage("Reset");
+    }
+
+    public void EndGame()
+    {
+        Steve.steveAlive = false;
+        EventManager.Broadcast(EVENT.endGame);
+    }
+
+    IEnumerator Fade(float duration, bool FadeIn)
+    {
+        Color a = Color.black;
+        Color b = Color.black;
+        b.a = 0;
+        while (duration > 0)
+        {
+            if (FadeIn)
+            {
+                FadeInObject.GetComponent<SpriteRenderer>().color = Color.Lerp(b, a, duration / 2);
+
+            }
+            else
+            {
+                UI.SetActive(false);
+                FadeInObject.GetComponent<SpriteRenderer>().color = Color.Lerp(a, b, Time.deltaTime);
+            }
+            duration -= Time.deltaTime;
+            yield return null;
         }
+
+        if (FadeIn)
+        {
+            UI.SetActive(true);
+            yield return null;
+
+        }
+        yield return null;
     }
 }

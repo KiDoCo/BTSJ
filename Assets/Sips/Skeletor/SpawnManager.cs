@@ -11,6 +11,8 @@ public class SpawnManager : MonoBehaviour
     private List<Transform> GroundPos = new List<Transform>(3);
     [SerializeField] private float valueOffset;
     [SerializeField] private float distance;
+    bool canspawn;
+    private List<GameObject> entities = new List<GameObject>();
     int a = 0;
     int g = 0;
 
@@ -21,6 +23,8 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
+        EventManager.ActionAddHandler(EVENT.endGame, Endgame);
+        canspawn = true;
         for (int i = 0; i < AirPos.Capacity; i++)
         {
             Transform a = GetComponent<Transform>();
@@ -38,8 +42,10 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-    airoffset = new Vector3(valueOffset, 0.0f, 0);
-    groundoffset = new Vector3(valueOffset, 0.0f, 0);
+        if (!canspawn) return;
+
+        airoffset = new Vector3(valueOffset, 0.0f, 0);
+        groundoffset = new Vector3(valueOffset, 0.0f, 0);
         if (spawnTimer >= 0)
         {
             spawnTimer -= Time.deltaTime;
@@ -56,12 +62,12 @@ public class SpawnManager : MonoBehaviour
             if (temp.GetComponent<MonoBehaviour>() is IEnemy)
             {
                 if (temp.GetComponent<IEnemy>().id == "GroundE")
-                { 
+                {
 
                     Vector3 w = GroundPos[g].position + GameManager.Instance.Player.transform.position;
                     GameObject clone = Instantiate(temp, w, Quaternion.identity);
+                    entities.Add(clone);
                     clone.name = "ENEMY";
-
                 }
                 else
                 {
@@ -70,18 +76,18 @@ public class SpawnManager : MonoBehaviour
                     Vector3 w = new Vector3(AirPos[a].position.x, 0) + GameManager.Instance.Player.transform.position;
 
                     GameObject clone = Instantiate(temp, AirPos[0].position + GameManager.Instance.Player.transform.position, Quaternion.identity);
+                    entities.Add(clone);
                     clone.name = "ENEMY";
-
                 }
             }
             else
             {
-                Vector3 w = new Vector3(GroundPos[g].position.x,GroundPos[g].position.y) + GameManager.Instance.Player.transform.position;
+                Vector3 w = new Vector3(GroundPos[g].position.x, GroundPos[g].position.y) + GameManager.Instance.Player.transform.position;
                 GameObject clone = Instantiate(temp, w, Quaternion.identity);
+                entities.Add(clone);
                 clone.name = "PickUp";
 
             }
-
             a++;
             g++;
 
@@ -94,4 +100,17 @@ public class SpawnManager : MonoBehaviour
 
         spawnTimer = 3.5f;
     }
+
+    void Endgame()
+    {
+        canspawn = false;
+        for (int i = 0; i < entities.Count; i++)
+        {
+            Destroy(entities[i]);
+        }
+
+        entities.Clear();
+    }
+
+
 }
