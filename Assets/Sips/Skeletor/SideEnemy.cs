@@ -6,7 +6,6 @@ using UnityEngine;
 public class SideEnemy : MonoBehaviour, IEnemy
 {
     private Collider2D boxCollider;
-    private bool canMove = false;
     private bool canStun = true;
     private float stunTimer;
     private float moveValue = 5.0f;
@@ -24,16 +23,6 @@ public class SideEnemy : MonoBehaviour, IEnemy
         boxCollider = GetComponent<Collider2D>();
     }
 
-    private void Start()
-    {
-
-    }
-
-    private void OnBecameVisible()
-    {
-        canMove = true;
-    }
-
     private void Timer()
     {
         if (stunTimer < 0)
@@ -49,7 +38,6 @@ public class SideEnemy : MonoBehaviour, IEnemy
     private void Update()
     {
         Timer();
-        if (!canMove) return;
 
         if (canStun)
             transform.Translate(Vector3.left * Time.deltaTime * moveValue);
@@ -80,15 +68,12 @@ public class SideEnemy : MonoBehaviour, IEnemy
 
         if ((GameManager.Instance.Player.transform.position - gameObject.transform.position).magnitude >= 150.0f)
         {
-            SpawnManager.spawnedEntities.Remove(gameObject);
-
-            Destroy(gameObject);
+            TakeDamage();
         }
     }
 
     public void TakeDamage()
     {
-        SpawnManager.spawnedEntities.Remove(gameObject);
         
         Destroy(gameObject);
     }

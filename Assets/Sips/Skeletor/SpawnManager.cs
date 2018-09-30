@@ -7,14 +7,13 @@ public class SpawnManager : MonoBehaviour
 
     public List<GameObject> prefabs;
 
-    private List<Vector3> AirPos = new List<Vector3>(3);
-    private List<Vector3> GroundPos = new List<Vector3>(3);
+    private List<Transform> AirPos = new List<Transform>(3);
+    private List<Transform> GroundPos = new List<Transform>(3);
     [SerializeField] private float valueOffset;
     [SerializeField] private float distance;
     int a = 0;
     int g = 0;
 
-    public static List<GameObject> spawnedEntities = new List<GameObject>();
 
     private Vector3 airoffset = new Vector3(30.0f, 0.0f, 0);
     private Vector3 groundoffset = new Vector3(30.0f, 0.0f, 0);
@@ -24,12 +23,16 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < AirPos.Capacity; i++)
         {
-            AirPos.Add((airoffset * (i + 1)));
+            Transform a = GetComponent<Transform>();
+            a.position = airoffset * (i + 1);
+            AirPos.Add(a);
         }
 
         for (int i = 0; i < GroundPos.Capacity; i++)
         {
-            GroundPos.Add((groundoffset * (i + 1)) + new Vector3(0,-0.2f,0));
+            Transform a = GetComponent<Transform>();
+            a.position = (groundoffset * (i + 1)) + new Vector3(0, -0.2f, 0);
+            GroundPos.Add(a);
         }
     }
 
@@ -46,54 +49,37 @@ public class SpawnManager : MonoBehaviour
         int number = Random.Range(0, 4);
         for (int i = 0; i < number; i++)
         {
-            int r = Random.Range(0, 6);
+            int r = Random.Range(0, prefabs.Count);
             GameObject temp = prefabs[r];
 
-            for (int x = 0; x < spawnedEntities.Count; x++)
-            {
-                if (Vector3.Distance((AirPos[a] + GameManager.Instance.transform.position) , spawnedEntities[x].transform.position) >= distance ||  Vector3.Distance((GroundPos[g] + GameManager.Instance.transform.position) , spawnedEntities[x].transform.position) >= distance)
-                {
-                    Debug.Log(Vector3.Distance((AirPos[a] + GameManager.Instance.transform.position), spawnedEntities[x].transform.position));
-                    Debug.Log("trying next spot");
-                    a++;
-                    g++;
 
-                    if(g >= 3)
-                    {
-                        g = 0;
-                        a = 0;
-                    }
-                    return;
-                }
-            }
-
-            if (temp.GetComponent<MonoBehaviour>() is IEnemy) // this throws error ??
+            if (temp.GetComponent<MonoBehaviour>() is IEnemy)
             {
                 if (temp.GetComponent<IEnemy>().id == "GroundE")
                 { 
 
-                    Vector3 w = GroundPos[g] + GameManager.Instance.Player.transform.position;
+                    Vector3 w = GroundPos[g].position + GameManager.Instance.Player.transform.position;
                     GameObject clone = Instantiate(temp, w, Quaternion.identity);
                     clone.name = "ENEMY";
-                    spawnedEntities.Add(clone);
+
                 }
                 else
                 {
 
 
-                    Vector3 w = new Vector3(AirPos[a].x, 0) + GameManager.Instance.Player.transform.position;
+                    Vector3 w = new Vector3(AirPos[a].position.x, 0) + GameManager.Instance.Player.transform.position;
 
-                    GameObject clone = Instantiate(temp, AirPos[0] + GameManager.Instance.Player.transform.position, Quaternion.identity);
+                    GameObject clone = Instantiate(temp, AirPos[0].position + GameManager.Instance.Player.transform.position, Quaternion.identity);
                     clone.name = "ENEMY";
-                    spawnedEntities.Add(clone);
+
                 }
             }
             else
             {
-                Vector3 w = new Vector3(GroundPos[g].x,GroundPos[g].y) + GameManager.Instance.Player.transform.position;
+                Vector3 w = new Vector3(GroundPos[g].position.x,GroundPos[g].position.y) + GameManager.Instance.Player.transform.position;
                 GameObject clone = Instantiate(temp, w, Quaternion.identity);
                 clone.name = "PickUp";
-                spawnedEntities.Add(clone);
+
             }
 
             a++;
