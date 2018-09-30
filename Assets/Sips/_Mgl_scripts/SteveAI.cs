@@ -24,7 +24,7 @@ public class SteveAI : MonoBehaviour
     void Start()
     {
         steveAlive = true;
-        timer = 1.0f;
+        timer = 4f;
     }
 
     void FixedUpdate()
@@ -68,7 +68,7 @@ public class SteveAI : MonoBehaviour
 
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         AnimChanger();
     }
@@ -88,6 +88,8 @@ public class SteveAI : MonoBehaviour
             {
                 EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 2);
                 animController.SetTrigger("Stunned");
+                timer = 2f;
+                running = false;
             }
         }
 

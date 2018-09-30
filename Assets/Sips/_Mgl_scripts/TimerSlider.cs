@@ -6,19 +6,32 @@ using UnityEngine.UI;
 public class TimerSlider : MonoBehaviour
 {
 
+    bool gameStarted;
+
     [SerializeField] Slider timer;
     [SerializeField] float timeLosingSpeed = 0.1f, timeChangeSpeed = 1f;
     float maxValue;
 
+    float time = 4f;
+
     void OnEnable()
     {
+        gameStarted = false;
         timer.value = timer.maxValue; // reset
         maxValue = timer.maxValue;
     }
 
     void Update()
     {
-        timer.value -= timeLosingSpeed * Time.deltaTime;
+
+        if(time > 0)
+        {
+            time -= Time.deltaTime;
+        }
+        else
+        {
+            timer.value -= timeLosingSpeed * Time.deltaTime;
+        }
 
         if(Input.GetKeyDown(KeyCode.G))
         {
