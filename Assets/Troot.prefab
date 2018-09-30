@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4712210060028022}
   - component: {fileID: 95689440493560308}
-  - component: {fileID: 114733261843219224}
+  - component: {fileID: 114493902724522370}
   m_Layer: 0
   m_Name: Troot
   m_TagString: Untagged
@@ -604,7 +604,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1348439688768688}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.09, y: 3.21, z: 0.016601562}
+  m_LocalPosition: {x: -2.04, y: -4.95, z: 0.016601562}
   m_LocalScale: {x: 1.5964, y: 1.5964, z: 1.5964}
   m_Children:
   - {fileID: 4024498469061134}
@@ -754,10 +754,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.4561506
+  m_Length: 0.45615083
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4487822513790518}
   m_AttachedIK: {fileID: 0}
+--- !u!114 &114493902724522370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1348439688768688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da2acb078fb6924194cb01b0ca487f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 5
+  speed: 15
 --- !u!114 &114542849841865452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -818,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.1338054
+  m_Length: 0.13380544
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4883404752669900}
   m_AttachedIK: {fileID: 0}
@@ -838,19 +851,6 @@ MonoBehaviour:
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 0}
   m_AttachedIK: {fileID: 0}
---- !u!114 &114733261843219224
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1348439688768688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da2acb078fb6924194cb01b0ca487f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 5
-  speed: 15
 --- !u!114 &114772289036844006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -923,7 +923,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.19062111
+  m_Length: 0.1906211
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4367294734989382}
   m_AttachedIK: {fileID: 0}
@@ -985,7 +985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.10613811
+  m_Length: 0.10613817
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4284476602322838}
   m_AttachedIK: {fileID: 0}

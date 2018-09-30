@@ -63,6 +63,7 @@ public class PlayerAction : MonoBehaviour
             }
             else
             {
+
                 Debug.Log("Interact with" + other.gameObject.name);
             }
         }
