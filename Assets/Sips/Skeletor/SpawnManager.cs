@@ -67,7 +67,7 @@ public class SpawnManager : MonoBehaviour
                 }
             }
 
-            if (temp.GetComponent<MonoBehaviour>() is IEnemy)
+            if (temp.GetComponent<MonoBehaviour>() is IEnemy) // this throws error ??
             {
                 if (temp.GetComponent<IEnemy>().id == "GroundE")
                 { 

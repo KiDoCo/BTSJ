@@ -89,7 +89,7 @@ public class SideEnemy : MonoBehaviour, IEnemy
     public void TakeDamage()
     {
         SpawnManager.spawnedEntities.Remove(gameObject);
-
+        
         Destroy(gameObject);
     }
 

@@ -30,11 +30,16 @@ public class PlayerPickThrow : MonoBehaviour
     void Update()
     {
 
+        if(nearObjects.Count != 0)
+        {
+            if (nearObjects[0] == null)
+                nearObjects.Remove(nearObjects[0]);
+        }
+
         if(Input.GetKeyDown(action) && nearObjects.Count != 0 && !holding)
         {
             nearObjects[0].GetComponent<Throwable>().held = true;
             PickUp(nearObjects[0]);
-
         }
 
         if (holding)

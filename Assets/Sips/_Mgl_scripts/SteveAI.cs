@@ -27,7 +27,7 @@ public class SteveAI : MonoBehaviour
         timer = 1.0f;
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
 
@@ -68,7 +68,7 @@ public class SteveAI : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         AnimChanger();
     }
