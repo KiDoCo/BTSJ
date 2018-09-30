@@ -145,8 +145,8 @@ MonoBehaviour:
   Steve: {fileID: 0}
   sideEnemy: {fileID: 0}
   upEnemy: {fileID: 0}
-  FadeInObject: {fileID: 577358912}
-  UI: {fileID: 747003904}
+  FadeInObject: {fileID: 747003904}
+  UI: {fileID: 577358912}
 --- !u!4 &85590529
 Transform:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemies: []
   actionKey: 102
-  resetKey: 0
+  resetKey: 114
   attackTimer: 0
   attackCooldown: 0.3
 --- !u!61 &115896783

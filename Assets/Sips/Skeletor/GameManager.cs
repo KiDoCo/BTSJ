@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
         upEnemy = FindObjectOfType<UpEnemy>();
     }
 
+    private void Start()
+    {
+        StartGame();
+    }
+
     private void Update()
     {
         if(Input.GetKey(KeyCode.Escape))
@@ -38,6 +43,7 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         EventManager.Broadcast(EVENT.Reset);
+        StartGame();
     }
 
     public void EndGame()
