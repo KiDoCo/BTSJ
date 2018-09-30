@@ -71,17 +71,17 @@ MonoBehaviour:
   depthOfField:
     m_Enabled: 0
     m_Settings:
-      focusDistance: 10
-      aperture: 5.6
-      focalLength: 50
+      focusDistance: 25.91
+      aperture: 13.8
+      focalLength: 213
       useCameraFov: 0
-      kernelSize: 1
+      kernelSize: 3
   motionBlur:
     m_Enabled: 0
     m_Settings:
       shutterAngle: 335
       sampleCount: 25
-      frameBlending: 0.298
+      frameBlending: 0.203
   eyeAdaptation:
     m_Enabled: 0
     m_Settings:
@@ -94,20 +94,20 @@ MonoBehaviour:
       adaptationType: 0
       speedUp: 2
       speedDown: 1
-      logMin: -8
+      logMin: -16
       logMax: 4
   bloom:
     m_Enabled: 1
     m_Settings:
       bloom:
         intensity: 0.15
-        threshold: 1.1
+        threshold: 1.61
         softKnee: 1
-        radius: 4.61
+        radius: 6.01
         antiFlicker: 0
       lensDirt:
-        texture: {fileID: 0}
-        intensity: 3
+        texture: {fileID: 2800000, guid: a2960ffde020f27409e070d92fb2e00b, type: 3}
+        intensity: 1.52
   colorGrading:
     m_Enabled: 1
     m_Settings:
@@ -135,7 +135,7 @@ MonoBehaviour:
         mode: 1
         log:
           slope: {r: 1, g: 1, b: 1, a: 0}
-          power: {r: 1, g: 1, b: 1, a: 0}
+          power: {r: 1, g: 0.74098146, b: 0.9187808, a: 0}
           offset: {r: 1, g: 1, b: 1, a: 0}
         linear:
           lift: {r: 0, g: 0, b: 0, a: 0}
@@ -294,7 +294,7 @@ MonoBehaviour:
           m_Loop: 0
           m_ZeroValue: 0.5
           m_Range: 1
-        e_CurrentEditingCurve: 0
+        e_CurrentEditingCurve: 2
         e_CurveY: 1
         e_CurveR: 0
         e_CurveG: 0
@@ -312,19 +312,19 @@ MonoBehaviour:
   grain:
     m_Enabled: 0
     m_Settings:
-      colored: 1
-      intensity: 0.5
-      size: 1
-      luminanceContribution: 0.8
+      colored: 0
+      intensity: 0.298
+      size: 3
+      luminanceContribution: 0
   vignette:
     m_Enabled: 1
     m_Settings:
       mode: 0
       color: {r: 0, g: 0, b: 0, a: 1}
       center: {x: 0.5, y: 0.5}
-      intensity: 0.34
-      smoothness: 0.24
-      roundness: 0.9
+      intensity: 0.639
+      smoothness: 0.342
+      roundness: 0.481
       mask: {fileID: 0}
       opacity: 1
       rounded: 0
