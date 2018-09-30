@@ -31,7 +31,7 @@ public class SteveAI : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        AnimChanger();
         if (!steveAlive)
         {
             state = AnimStates.Dead;
@@ -71,7 +71,6 @@ public class SteveAI : MonoBehaviour
             Debug.Log(distance);
         }
 
-        AnimChanger();
     }
 
     private void AnimChanger()

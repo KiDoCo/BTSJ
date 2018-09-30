@@ -63,10 +63,11 @@ public class FlyEnemy : MonoBehaviour, IEnemy
 
     void TakeAShit()
     {
-        GameObject shit = Instantiate(crap, transform.position + -Vector3.up * GetComponent<CircleCollider2D>().radius, Quaternion.identity);
+        GameObject shit = Instantiate(crap, transform.position + -Vector3.up, Quaternion.identity);
         shit.tag = "Crap";
         shit.AddComponent<Throwable>();
         Destroy(shit, 1f);
+        Debug.Log("shit" + shit);
     }
 
     public void TakeDamage()

@@ -50,15 +50,16 @@ public class Throwable : MonoBehaviour
             {
                 GameManager.Instance.Player.stunned = true;
                 GameManager.Instance.Player.Recover();
+                Destroy(gameObject);
             }
 
             if(other.gameObject.tag == "Steve")
             {
-                GameManager.Instance.Steve.running = false;
                 GameManager.Instance.Steve.timer = 2.0f;
+                GameManager.Instance.Steve.GetComponentInChildren<Animator>().SetTrigger("Stunned");
+                Destroy(gameObject);
             }
 
-            Destroy(gameObject);
 
         }
     }
