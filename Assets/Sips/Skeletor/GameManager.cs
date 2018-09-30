@@ -27,7 +27,9 @@ public class GameManager : MonoBehaviour
         if(Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
-        }    }
+        }
+    }
+
     void StartGame()
     {
         StartCoroutine(Fade(1.5f, true));
