@@ -19,9 +19,11 @@ public class GameManager : MonoBehaviour
         upEnemy = FindObjectOfType<UpEnemy>();
     }
 
-    void Start()
+    private void Update()
     {
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
-
-
 }
