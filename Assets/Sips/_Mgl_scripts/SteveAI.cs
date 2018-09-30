@@ -26,7 +26,7 @@ public class SteveAI : MonoBehaviour
         steveAlive = true;
         timer = 4f;
         EventManager.ActionAddHandler(EVENT.Reset, AReset);
-        timer = 3.5f;
+        timer = 6f;
     }
 
     void FixedUpdate()
