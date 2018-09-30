@@ -22,17 +22,16 @@ public class GameManager : MonoBehaviour
         upEnemy = FindObjectOfType<UpEnemy>();
     }
 
-    void Start()
+    private void Update()
     {
-        StartGame();
-    }
-
+        if(Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }    }
     void StartGame()
     {
         StartCoroutine(Fade(1.5f, true));
-    }
-
-    public void ResetGame()
+    }    public void ResetGame()
     {
         BroadcastMessage("Reset");
     }

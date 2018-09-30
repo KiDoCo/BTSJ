@@ -53,6 +53,9 @@ public class Throwable : MonoBehaviour
                 GameManager.Instance.Steve.running = false;
                 GameManager.Instance.Steve.timer = 2.0f;
             }
+
+            Destroy(gameObject);
+
         }
     }
 
