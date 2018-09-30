@@ -25,6 +25,8 @@ public class SteveAI : MonoBehaviour
     {
         steveAlive = true;
         timer = 4f;
+        EventManager.ActionAddHandler(EVENT.Reset, AReset);
+        timer = 3.5f;
     }
 
     void FixedUpdate()
@@ -40,6 +42,9 @@ public class SteveAI : MonoBehaviour
         {
             running = true;
         }
+        else
+            running = false;
+
         Stevebounds.center = transform.position;
         float distance = Vector3.Distance(transform.position, goal.transform.position);
         if (distance <= 1f && steveAlive)
@@ -101,6 +106,15 @@ public class SteveAI : MonoBehaviour
     {
         Debug.Log("Steve saved!");
         Destroy(gameObject);
+    }
+
+    private void AReset()
+    {
+        transform.position = new Vector3(-6.0f, 0, 0);
+        steveAlive = true;
+        state = AnimStates.Struck;
+        animController.SetTrigger("Struck");
+        timer = 3.5f;
     }
 }
 

@@ -24,6 +24,8 @@ public class SpawnManager : MonoBehaviour
     private void Start()
     {
         EventManager.ActionAddHandler(EVENT.endGame, Endgame);
+        EventManager.ActionAddHandler(EVENT.Reset, AReset);
+
         canspawn = true;
         for (int i = 0; i < AirPos.Capacity; i++)
         {
@@ -112,5 +114,9 @@ public class SpawnManager : MonoBehaviour
         entities.Clear();
     }
 
+    void AReset()
+    {
+        canspawn = true;
+    }
 
 }

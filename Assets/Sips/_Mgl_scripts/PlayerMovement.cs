@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         EventManager.ActionAddHandler(EVENT.endGame, EndGame);
+        EventManager.ActionAddHandler(EVENT.Reset, AReset);
     }
 
     void FixedUpdate()
@@ -84,6 +85,12 @@ public class PlayerMovement : MonoBehaviour
     public void EndGame()
     {
         End = true;
+    }
+
+    private void AReset()
+    {
+        transform.position = new Vector3(0.0f, 0.5f, 0);
+        End = false;
     }
 
 }
