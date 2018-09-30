@@ -53,7 +53,6 @@ public class SideEnemy : MonoBehaviour, IEnemy
             GameManager.Instance.Player.Recover();
             stunTimer = 5.0f;
             canStun = false;
-
         }
 
         if (boxCollider.bounds.Intersects(GameManager.Instance.Steve.Stevebounds))
@@ -62,8 +61,10 @@ public class SideEnemy : MonoBehaviour, IEnemy
             GameManager.Instance.Steve.running = false;
             GameManager.Instance.Steve.timer = 2.0f;
             GameManager.Instance.Steve.state = AnimStates.Stunned;
-            stunTimer = 5.0f;
+            GameManager.Instance.Steve.GetComponentInChildren<Animator>().SetTrigger("Stunned");
+            stunTimer = 2.0f;
             canStun = false;
+            Destroy(gameObject);
         }
 
         if ((GameManager.Instance.Player.transform.position - gameObject.transform.position).magnitude >= 150.0f)

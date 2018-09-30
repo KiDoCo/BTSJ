@@ -50,7 +50,6 @@ public class SteveAI : MonoBehaviour
         }
 
 
-
         if (!running)
         {
             timer -= Time.deltaTime;
@@ -67,10 +66,6 @@ public class SteveAI : MonoBehaviour
             Debug.Log(distance);
         }
 
-    }
-
-    private void Update()
-    {
         AnimChanger();
     }
 
@@ -89,8 +84,6 @@ public class SteveAI : MonoBehaviour
             {
                 EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 2);
                 animController.SetTrigger("Stunned");
-                timer = 2f;
-                running = false;
             }
         }
 
