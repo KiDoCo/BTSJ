@@ -33,16 +33,20 @@ public class GameManager : MonoBehaviour
     void StartGame()
     {
         StartCoroutine(Fade(1.5f, true));
-    }    public void ResetGame()
+    }
+
+    public void ResetGame()
     {
-        BroadcastMessage("Reset");
+        EventManager.Broadcast(EVENT.Reset);
     }
 
     public void EndGame()
     {
         Steve.steveAlive = false;
+        StartCoroutine(Fade(1.5f, false));
         EventManager.Broadcast(EVENT.endGame);
     }
+
 
     IEnumerator Fade(float duration, bool FadeIn)
     {

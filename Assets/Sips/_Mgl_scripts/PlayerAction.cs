@@ -8,7 +8,7 @@ public class PlayerAction : MonoBehaviour
     public List<GameObject> enemies = new List<GameObject>();
     [SerializeField] KeyCode actionKey;
     [SerializeField] KeyCode resetKey;
-
+    private float resetTimer;
     [SerializeField] float attackTimer, attackCooldown = .3f;
     bool attacking;
 
@@ -21,6 +21,7 @@ public class PlayerAction : MonoBehaviour
 
     void Update()
     {
+        resetTimer -= Time.deltaTime;
         if (Input.GetKeyDown(actionKey) && !attacking)
         {
             Attack();
@@ -38,9 +39,10 @@ public class PlayerAction : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(resetKey))
+        if(Input.GetKeyDown(resetKey) && resetTimer < 0)
         {
             GameManager.Instance.ResetGame();
+            resetTimer = 2.0f;
         }
     }
 

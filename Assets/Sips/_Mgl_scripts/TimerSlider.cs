@@ -16,21 +16,28 @@ public class TimerSlider : MonoBehaviour
         maxValue = timer.maxValue;
     }
 
+    private void Start()
+    {
+
+        EventManager.ActionAddHandler(EVENT.Reset, AReset);
+
+    }
+
     void Update()
     {
         timer.value -= timeLosingSpeed * Time.deltaTime;
 
-        if(Input.GetKeyDown(KeyCode.G))
+        if (Input.GetKeyDown(KeyCode.G))
         {
             AddTime(.5f);
         }
-        
-        if(Input.GetKeyDown(KeyCode.H))
+
+        if (Input.GetKeyDown(KeyCode.H))
         {
             LoseTime(.2f);
         }
 
-        if(timer.value <= 0f)
+        if (timer.value <= 0f)
         {
             GameManager.Instance.EndGame();
         }
@@ -58,7 +65,7 @@ public class TimerSlider : MonoBehaviour
     {
         float percent = 0;
 
-        while(percent < 1)
+        while (percent < 1)
         {
             percent += Time.deltaTime * 1 / duration;
             timer.value = Mathf.Lerp(current, wanted, percent);
@@ -66,4 +73,9 @@ public class TimerSlider : MonoBehaviour
         }
     }
 
+    private void AReset()
+    {
+        timer.value = timer.maxValue; // reset
+        maxValue = timer.maxValue;
+    }
 }
