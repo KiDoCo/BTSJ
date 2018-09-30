@@ -30,6 +30,11 @@ public class SteveAI : MonoBehaviour
     void FixedUpdate()
     {
 
+        if (!steveAlive)
+        {
+            state = AnimStates.Dead;
+            return;
+        }
 
         if (timer <= 0)
         {
@@ -44,11 +49,7 @@ public class SteveAI : MonoBehaviour
             return;
         }
 
-        if (!steveAlive)
-        {
-            state = AnimStates.Dead;
-            return;
-        }
+
 
         if (!running)
         {

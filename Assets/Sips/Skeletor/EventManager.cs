@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //List of events
-public enum EVENT { PlaySFX, PlayMusic};
+public enum EVENT { PlaySFX, PlayMusic, endGame};
 
 //list of sounds
 public enum SFXEvent { PowerUp, BurnOut,EnemyDeath, Goal,PlayerHit,SteveHit}; 
