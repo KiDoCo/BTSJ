@@ -14,6 +14,14 @@ public class Throwable : MonoBehaviour
             if(gameObject.tag == "GasCan")
             {
                 Destroy(other.gameObject);
+                GameObject o = Instantiate(GameManager.Instance.particlesystems[1], transform.position, Quaternion.identity);
+
+                for (int i = 0; i < o.GetComponentsInChildren<ParticleSystem>().Length; i++)
+                {
+                    o.GetComponentsInChildren<ParticleSystem>()[i].Play();
+
+                }
+                Destroy(o, 3.0f);
                 Destroy(gameObject);
             }
             else if(gameObject.tag == "Pickup")
@@ -29,6 +37,14 @@ public class Throwable : MonoBehaviour
             {
                 EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 1);
                 FindObjectOfType<TimerSlider>().LoseTime(0.1f);
+                GameObject o = Instantiate(GameManager.Instance.particlesystems[1], transform.position, Quaternion.identity);
+
+                for (int i = 0; i < o.GetComponentsInChildren<ParticleSystem>().Length; i++)
+                {
+                    o.GetComponentsInChildren<ParticleSystem>()[i].Play();
+
+                }
+                Destroy(o, 3.0f);
                 Destroy(gameObject);
 
 
@@ -39,6 +55,14 @@ public class Throwable : MonoBehaviour
                 EventManager.SoundBroadcast(EVENT.PlaySFX, AudioManager.SFXSource, 3);
                 FindObjectOfType<TimerSlider>().AddTime(0.15f);
 
+                GameObject o = Instantiate(GameManager.Instance.particlesystems[0], transform.position, Quaternion.identity);
+
+                for (int i = 0; i < o.GetComponentsInChildren<ParticleSystem>().Length; i++)
+                {
+                    o.GetComponentsInChildren<ParticleSystem>()[i].Play();
+
+                }
+                Destroy(o, 3.0f);
                 Destroy(gameObject);
             }
         }
@@ -50,6 +74,7 @@ public class Throwable : MonoBehaviour
             {
                 GameManager.Instance.Player.stunned = true;
                 GameManager.Instance.Player.Recover();
+
                 Destroy(gameObject);
             }
 
@@ -57,6 +82,7 @@ public class Throwable : MonoBehaviour
             {
                 GameManager.Instance.Steve.timer = 2.0f;
                 GameManager.Instance.Steve.GetComponentInChildren<Animator>().SetTrigger("Stunned");
+
                 Destroy(gameObject);
             }
 

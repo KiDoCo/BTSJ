@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public UpEnemy upEnemy;
     [SerializeField] GameObject FadeInObject;
     [SerializeField] GameObject UI;
+    [SerializeField] public GameObject[] particlesystems;
 
     private void Awake()
     {
